@@ -209,8 +209,16 @@
   .footer-links a:hover { color: var(--accent); }
   .footer-note { font-size: .62rem; color: var(--muted); }
 
-  /* divider */
-  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+  .warn-card {
+    background: rgba(255,184,0,.05); border: 1px solid rgba(255,184,0,.2);
+    border-radius: 8px; padding: 20px 22px; margin-bottom: 12px;
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+  .warn-icon { font-size: 1.3rem; flex-shrink: 0; }
+  .warn-body h4 { font-family: 'Syne', sans-serif; font-size: .9rem; color: var(--warn); margin-bottom: 6px; }
+  .warn-body p { font-size: .74rem; color: var(--muted); line-height: 1.8; }
+  .warn-body ol { font-size: .74rem; color: var(--muted); line-height: 2; padding-left: 18px; margin-top: 6px; }
+  .warn-body ol li { margin-bottom: 2px; }
 </style>
 </head>
 <body>
@@ -221,6 +229,7 @@
     <a href="#features">Fonctions</a>
     <a href="#sources">Sources</a>
     <a href="#install">Installation</a>
+    <a href="#limitations">Limitations</a>
   </div>
   <a href="https://github.com/korneevscp/shadowwatch" class="nav-gh">★ GitHub</a>
 </nav>
@@ -386,6 +395,48 @@
           <h4>Lancer (Windows)</h4>
           <p>Double-clique sur <strong>installer.bat</strong> en tant qu'administrateur pour installer la tâche quotidienne automatique.</p>
           <div class="code-inline">py monitor.py &nbsp;|&nbsp; py dashboard.py</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- LIMITATIONS -->
+<section id="limitations">
+  <div class="section-inner">
+    <div class="section-label">Limitations</div>
+    <h2 class="section-title">Ce qu'il faut savoir<br>avant d'utiliser</h2>
+    <p class="section-sub">ShadowWatch fonctionne avec des sources publiques gratuites. Certaines ont des restrictions à connaître.</p>
+
+    <div style="margin-top:40px;">
+      <div class="warn-card">
+        <div class="warn-icon">⚠️</div>
+        <div class="warn-body">
+          <h4>Google 429 — Blocage si relance trop rapide</h4>
+          <p>Google détecte les scripts automatiques et peut bloquer temporairement les requêtes avec une erreur <strong style="color:var(--warn)">429 Too Many Requests</strong>. Si cela arrive :</p>
+          <ol>
+            <li>Attends <strong>30 minutes</strong> avant de relancer le script</li>
+            <li>Le script intègre déjà des pauses automatiques (15s entre requêtes, 30s entre keywords)</li>
+            <li>Si le problème persiste, augmente les valeurs <code style="color:var(--blue)">sleep_interval</code> et <code style="color:var(--blue)">time.sleep()</code> dans <code style="color:var(--blue)">monitor.py</code></li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="warn-card">
+        <div class="warn-icon">⚖️</div>
+        <div class="warn-body">
+          <h4>Usage personnel uniquement</h4>
+          <p>Ce projet est conçu pour surveiller <strong>vos propres données personnelles</strong>. Surveiller les informations d'autrui sans consentement est illégal (RGPD, Art. 226-1 du Code pénal français).</p>
+        </div>
+      </div>
+
+      <div class="warn-card">
+        <div class="warn-icon">📶</div>
+        <div class="warn-body">
+          <h4>Connexion internet requise</h4>
+          <p>Le scan nécessite une connexion active. La tâche automatique échouera silencieusement si le PC est éteint ou hors ligne à l'heure planifiée — elle se relancera le lendemain.</p>
         </div>
       </div>
     </div>
