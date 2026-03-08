@@ -139,7 +139,10 @@ crontab -e
 
 ## ⚠️ Limitations connues
 
-- **Google 429** : Google peut bloquer les requêtes trop fréquentes. Le script attend 10 secondes entre chaque requête. Si le blocage persiste, attends 15-20 minutes avant de relancer.
+- **Google 429 — Trop de requêtes** : Google peut bloquer les requêtes automatiques si le script est relancé trop fréquemment. Si tu vois une erreur `429 Too Many Requests` :
+  1. **Attends 30 minutes** avant de relancer
+  2. Le script attend déjà 15 secondes entre chaque requête et 30 secondes entre chaque keyword pour minimiser ce risque
+  3. Si le problème persiste, augmente encore les valeurs `sleep_interval` et `time.sleep()` dans `monitor.py`
 - **Usage personnel uniquement** : Ce projet est conçu pour surveiller vos propres données. Surveiller les données d'autrui sans consentement est illégal (RGPD, Art. 226-1 du Code pénal).
 
 ---
